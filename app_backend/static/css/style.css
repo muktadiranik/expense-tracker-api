@@ -1,0 +1,16 @@
+body {
+  background-color: rgb(58, 60, 60);
+}
+
+#delete-alert,
+#update-alert,
+#add-alert {
+  left: 40%;
+  right: 40%;
+  position: fixed;
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
