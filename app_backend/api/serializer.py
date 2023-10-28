@@ -11,4 +11,4 @@ class ToDoListSerializer(ModelSerializer):
 class ExpenseTrackerSerializer(ModelSerializer):
     class Meta:
         model = ExpenseTracker
-        fields = "__all__"
+        fields = ["id", "amount", "amount_type", "created", "updated"]
