@@ -18,6 +18,9 @@ class ExpenseTrackerViewSet(ModelViewSet):
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
 
+    def get_serializer_context(self):
+        return {'user': self.request.user}
+
 
 class IncomeExpenseAPIView(APIView):
     def get(self, request):
