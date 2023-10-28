@@ -15,14 +15,17 @@ class ExpenseTrackerViewSet(ModelViewSet):
     serializer_class = ExpenseTrackerSerializer
     queryset = ExpenseTracker.objects.all()
 
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
 
 class IncomeExpenseAPIView(APIView):
     def get(self, request):
         expense = 0
-        for i in ExpenseTracker.objects.filter(amount_type="Expense"):
+        for i in ExpenseTracker.objects.filter(amount_type="Expense", user=request.user):
             expense = expense + i.amount
         income = 0
-        for i in ExpenseTracker.objects.filter(amount_type="Income"):
+        for i in ExpenseTracker.objects.filter(amount_type="Income", user=request.user):
             income = income + i.amount
 
         return Response(data={
